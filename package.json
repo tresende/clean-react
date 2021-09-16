@@ -6,7 +6,10 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest --passWithNoTests --no-cache --runInBand",
+    "test:watch": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage"
   },
   "repository": {
     "type": "git",
@@ -14,7 +17,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "GNU GPL3",
   "bugs": {
     "url": "https://github.com/tresende/clean-react/issues"
   },
