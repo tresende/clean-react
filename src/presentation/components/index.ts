@@ -1,0 +1,5 @@
+export { default as Input } from '@/presentation/components/input'
+export { default as Footer } from '@/presentation/components/footer'
+export { default as Header } from '@/presentation/components/login-header'
+export { default as FormStatus } from '@/presentation/components/form-status'
+export { default as Router } from '@/presentation/components/router'

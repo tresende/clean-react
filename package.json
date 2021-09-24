@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "webpack-dev-server --open",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "test": "cross-env NODE_ICU_DATA=node_modules/full-icu jest --passWithNoTests --no-cache --runInBand",
