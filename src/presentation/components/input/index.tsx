@@ -7,10 +7,10 @@ type Props = React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>
 const Input: React.FC<Props> = (props: Props) => {
   const { state, setState } = useContext(Context)
   const error = state[`${props.name}Error`]
-  const enableInput = (event: React.FocusEvent<HTMLInputElement>): void => {
+  const enableInput = (event: React.FocusEvent<HTMLInputElement>) => {
     event.target.readOnly = false
   }
-  const handleChange = (event: React.FocusEvent<HTMLInputElement>): void => {
+  const handleChange = (event: React.FocusEvent<HTMLInputElement>) => {
     setState({
       ...state,
       [event.target.name]: event.target.value
