@@ -6,9 +6,8 @@ import Context from '@/presentation/contexts/form/fom-context'
 import Styles from './form-status-styles.scss'
 
 const FormStatus = () => {
-  const { state, errorState } = useContext(Context)
-  const { isLoading, errorMessage } = state
-  const { mainError } = errorState
+  const { state } = useContext(Context)
+  const { isLoading, errorMessage, mainError } = state
   return (
     <div data-testid="error-wrap" className={Styles.errorWrap}>
       {isLoading && <Spinner className={Styles.spinner} />}
