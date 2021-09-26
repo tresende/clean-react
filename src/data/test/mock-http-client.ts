@@ -1,9 +1,9 @@
-import { HttpResponse, HttpStatusCode, HttpPostClient, HttpPostParams } from '../protocols/http'
+import { HttpPostClient, HttpPostParams, HttpResponse, HttpStatusCode } from '@/data/protocols/http'
 
 export class HttpPostClientSpy<T, R> implements HttpPostClient<T, R> {
   url?: string
   body?: T
-  response?: HttpResponse<R> = {
+  response: HttpResponse<R> = {
     statusCode: HttpStatusCode.ok
   }
 

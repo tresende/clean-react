@@ -1,4 +1,4 @@
-@import './colors.scss';
+@import '../styles/colors.scss';
 
 * {
   font-family: 'Roboto', sans-serif;
@@ -8,19 +8,27 @@
   box-sizing: border-box;
 }
 
-input[type='email'],
-input[type='password'] {
+body {
+  background-color: $background;
+}
+
+input[type='password'],
+input[type='email'] {
   border: 1px solid $primaryLight;
   line-height: 40px;
   border-radius: 4px;
-  padding: 0 40px 0 8px;
+  padding: 0px 40px 0px 8px;
+
+  &:focus {
+    outline-color: $primaryLight;
+  }
 }
 
 button {
-  background: $primary;
+  background-color: $primary;
+  line-height: 60px;
   color: $white;
   border-radius: 8px;
-  line-height: 60px;
   font-size: 16px;
   border: none;
 
