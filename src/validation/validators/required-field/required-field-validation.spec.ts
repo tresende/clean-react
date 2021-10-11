@@ -1,6 +1,6 @@
 import faker from 'faker'
-import { RequiredFieldError } from '../errors'
-import { FieldValidation } from '../protocols/field-validation'
+import { RequiredFieldError } from '@/validation/errors'
+import { FieldValidation } from '@/validation/protocols/field-validation'
 
 class RequiredFieldValidation implements FieldValidation {
   constructor(readonly fieldName: string) {}
