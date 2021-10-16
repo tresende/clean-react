@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { HttpPostParams, HttpResponse, HttpPostClient } from '@/data/protocols/http'
 import axios, { AxiosResponse } from 'axios'
 
