@@ -1,7 +1,7 @@
 import faker from 'faker'
 
 import { SetStorageSpy } from '../test'
-import { LocalSaveAccessToken } from './local-save-access-token'
+import { LocalSaveAccessToken } from '@/data/save-access-token/local-save-access-token'
 
 type MakeSut = {
   sut: LocalSaveAccessToken
