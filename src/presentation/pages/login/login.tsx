@@ -47,11 +47,6 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
 
       history.replace('/')
     } catch (error) {
-      console.log('------------------------------------------------')
-      console.log(error)
-      //console.log(error.message)
-      console.log('------------------------------------------------')
-
       setState({
         ...state,
         isLoading: false,
