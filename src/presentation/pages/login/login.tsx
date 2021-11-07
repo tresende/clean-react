@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 
 import Styles from './login-styles.scss'
-import { Authentication } from '@/domain/usecases'
+import { Authentication, SaveAccessToken } from '@/domain/usecases'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
 import { Footer, Input, LoginHeader, FormStatus } from '@/presentation/components'
 
 type Props = {
   validation: Validation
+  saveAccessToken: SaveAccessToken
   authentication: Authentication
 }
 
-const Login = ({ validation, authentication }: Props) => {
+const Login = ({ validation, authentication, saveAccessToken }: Props) => {
   const history = useHistory()
   const [state, setState] = useState({
     isLoading: false,
@@ -42,9 +43,15 @@ const Login = ({ validation, authentication }: Props) => {
         email: state.email,
         password: state.password
       })
-      localStorage.setItem('accessToken', account.accessToken)
+      saveAccessToken.save(account.accessToken)
+
       history.replace('/')
     } catch (error) {
+      console.log('------------------------------------------------')
+      console.log(error)
+      //console.log(error.message)
+      console.log('------------------------------------------------')
+
       setState({
         ...state,
         isLoading: false,
@@ -55,6 +62,7 @@ const Login = ({ validation, authentication }: Props) => {
 
   return (
     <div className={Styles.login}>
+      {JSON.stringify(state)}
       <LoginHeader />
       <Context.Provider value={{ state, setState }}>
         <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>
