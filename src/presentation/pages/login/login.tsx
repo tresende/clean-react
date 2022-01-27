@@ -57,7 +57,6 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
 
   return (
     <div className={Styles.login}>
-      {JSON.stringify(state)}
       <LoginHeader />
       <Context.Provider value={{ state, setState }}>
         <form data-testid="form" className={Styles.form} onSubmit={handleSubmit}>

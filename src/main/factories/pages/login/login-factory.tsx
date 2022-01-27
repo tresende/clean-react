@@ -8,7 +8,7 @@ import { makeLocalSaveAccessToken } from '@/main/factories/use-cases/save-access
 export const makeLogin = () => {
   return (
     <Login
-      saveAccessToken={makeLocalSaveAccessToken}
+      saveAccessToken={makeLocalSaveAccessToken()}
       authentication={makeRemoteAuthentication()}
       validation={makeLoginValidation()}
     />

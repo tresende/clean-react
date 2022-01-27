@@ -1,14 +1,6 @@
 import faker from 'faker'
 import { RequiredFieldError } from '@/validation/errors'
-import { FieldValidation } from '@/validation/protocols/field-validation'
-
-class RequiredFieldValidation implements FieldValidation {
-  constructor(readonly fieldName: string) {}
-
-  validate(value: string) {
-    return value ? null : new RequiredFieldError()
-  }
-}
+import { RequiredFieldValidation } from '..'
 
 const makeSut = () => new RequiredFieldValidation(faker.database.collation())
 

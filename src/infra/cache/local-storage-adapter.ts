@@ -1,5 +1,3 @@
-import 'jest-localstorage-mock'
-
 import { SetStorage } from '@/data/protocols/cache'
 
 export class LocalstoraAdpater implements SetStorage {
