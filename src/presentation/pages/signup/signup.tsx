@@ -1,19 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 import Styles from './signup-styles.scss'
 import Context from '@/presentation/contexts/form/form-context'
+import { Validation } from '@/presentation/protocols/validation'
 import { Footer, Input, LoginHeader, FormStatus } from '@/presentation/components'
 
-const Signup = () => {
+type SignupProps = {
+  validation: Validation
+}
+
+const Signup = ({ validation }: SignupProps) => {
   const [state, setState] = useState({
     isLoading: false,
+    name: 'Campo obrigatório',
     nameError: 'Campo obrigatório',
     emailError: 'Campo obrigatório',
     passwordError: 'Campo obrigatório',
     passwordConfirmationError: 'Campo obrigatório',
     mainError: ''
   })
+
+  useEffect(() => {
+    setState({
+      ...state,
+      nameError: validation.validate('email', state.name)
+    })
+  }, [state.name])
 
   return (
     <div className={Styles.signup}>
