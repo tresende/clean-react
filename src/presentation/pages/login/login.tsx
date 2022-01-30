@@ -32,7 +32,7 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
     })
   }, [state.email, state.password])
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
       if (state.isLoading || state.emailError || state.passwordError) {

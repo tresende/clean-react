@@ -34,6 +34,9 @@ const Signup = ({ validation }: SignupProps) => {
     })
   }, [state.name, state.email, state.password, state.passwordConfirmation])
 
+  const isValidButton =
+    !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError || !!state.nameError
+
   return (
     <div className={Styles.signup}>
       <LoginHeader />
@@ -44,7 +47,7 @@ const Signup = ({ validation }: SignupProps) => {
           <Input type="email" name="email" placeholder="Digite seu e-mail" />
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
-          <button disabled className={Styles.submit} type="submit" data-testid="submit">
+          <button disabled={isValidButton} className={Styles.submit} type="submit" data-testid="submit">
             Entrar
           </button>
           <Link to="/login" className={Styles.link}>
