@@ -26,8 +26,8 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
   })
 
   useEffect(() => {
-    const emailError = validation.validate('email', state.email)
-    const passwordError = validation.validate('password', state.password)
+    const emailError = validation.validate('email', state)
+    const passwordError = validation.validate('password', state)
 
     const isFormInvalid = !!emailError || !!passwordError
 

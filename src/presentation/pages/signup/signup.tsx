@@ -31,10 +31,10 @@ const Signup = ({ validation, addAccount, saveAccessToken }: SignupProps) => {
   })
 
   useEffect(() => {
-    const nameError = validation.validate('name', state.name)
-    const emailError = validation.validate('email', state.email)
-    const passwordError = validation.validate('password', state.password)
-    const passwordConfirmationError = validation.validate('passwordConfirmation', state.passwordConfirmation)
+    const nameError = validation.validate('name', state)
+    const emailError = validation.validate('email', state)
+    const passwordError = validation.validate('password', state)
+    const passwordConfirmationError = validation.validate('passwordConfirmation', state)
     const isFormInvalid = !!emailError || !!passwordError || !!passwordConfirmationError || !!nameError
 
     setState({
