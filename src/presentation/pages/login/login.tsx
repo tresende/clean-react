@@ -5,7 +5,7 @@ import Styles from './login-styles.scss'
 import { Authentication, SaveAccessToken } from '@/domain/usecases'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
-import { Footer, Input, LoginHeader, FormStatus } from '@/presentation/components'
+import { Footer, Input, LoginHeader, FormStatus, SubmitButton } from '@/presentation/components'
 
 type Props = {
   validation: Validation
@@ -21,14 +21,21 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
     password: '',
     emailError: '',
     passwordError: '',
-    mainError: ''
+    mainError: '',
+    isFormInvalid: false
   })
 
   useEffect(() => {
+    const emailError = validation.validate('email', state.email)
+    const passwordError = validation.validate('password', state.password)
+
+    const isFormInvalid = !!emailError || !!passwordError
+
     setState({
       ...state,
-      emailError: validation.validate('email', state.email),
-      passwordError: validation.validate('password', state.password)
+      emailError,
+      passwordError,
+      isFormInvalid
     })
   }, [state.email, state.password])
 
@@ -63,14 +70,7 @@ const Login = ({ validation, authentication, saveAccessToken }: Props) => {
           <h2>Login</h2>
           <Input type="email" name="email" placeholder="Digite seu e-mail" />
           <Input type="password" name="password" placeholder="Digite sua senha" />
-          <button
-            data-testid="submit"
-            disabled={!!state.emailError || !!state.passwordError}
-            className={Styles.submit}
-            type="submit"
-          >
-            Entrar
-          </button>
+          <SubmitButton text="Entrar" />
           <Link data-testid="signup-link" to="/signup" className={Styles.link}>
             Criar conta
           </Link>

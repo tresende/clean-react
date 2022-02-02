@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom'
 import Styles from './signup-styles.scss'
 import Context from '@/presentation/contexts/form/form-context'
 import { Validation } from '@/presentation/protocols/validation'
-import { Footer, Input, LoginHeader, FormStatus } from '@/presentation/components'
+import { Footer, Input, LoginHeader, FormStatus, SubmitButton } from '@/presentation/components'
 import { AddAccount, SaveAccessToken } from '@/domain/usecases'
 
 type SignupProps = {
@@ -26,21 +26,26 @@ const Signup = ({ validation, addAccount, saveAccessToken }: SignupProps) => {
     emailError: '',
     passwordError: '',
     passwordConfirmationError: '',
-    mainError: ''
+    mainError: '',
+    isFormInvalid: false
   })
 
   useEffect(() => {
+    const nameError = validation.validate('name', state.name)
+    const emailError = validation.validate('email', state.email)
+    const passwordError = validation.validate('password', state.password)
+    const passwordConfirmationError = validation.validate('passwordConfirmation', state.passwordConfirmation)
+    const isFormInvalid = !!emailError || !!passwordError || !!passwordConfirmationError || !!nameError
+
     setState({
       ...state,
-      nameError: validation.validate('name', state.name),
-      emailError: validation.validate('email', state.email),
-      passwordError: validation.validate('password', state.password),
-      passwordConfirmationError: validation.validate('passwordConfirmation', state.passwordConfirmation)
+      nameError,
+      emailError,
+      passwordError,
+      passwordConfirmationError,
+      isFormInvalid
     })
   }, [state.name, state.email, state.password, state.passwordConfirmation])
-
-  const isValidButton =
-    !!state.emailError || !!state.passwordError || !!state.passwordConfirmationError || !!state.nameError
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -82,9 +87,7 @@ const Signup = ({ validation, addAccount, saveAccessToken }: SignupProps) => {
           <Input type="email" name="email" placeholder="Digite seu e-mail" />
           <Input type="password" name="password" placeholder="Digite sua senha" />
           <Input type="password" name="passwordConfirmation" placeholder="Repita sua senha" />
-          <button disabled={isValidButton} className={Styles.submit} type="submit" data-testid="submit">
-            Entrar
-          </button>
+          <SubmitButton text="Cadastrar" />
           <Link replace data-testid="login-link" to="/login" className={Styles.link}>
             Voltar para o login
           </Link>
