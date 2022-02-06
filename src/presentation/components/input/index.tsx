@@ -24,7 +24,15 @@ const Input = (props: Props) => {
   }
   return (
     <div className={Styles.inputWrap}>
-      <input {...props} data-testid={props.name} readOnly onFocus={enableInput} onChange={handleChange} />
+      <input
+        {...props}
+        placeholder=" "
+        data-testid={props.name}
+        readOnly
+        onFocus={enableInput}
+        onChange={handleChange}
+      />
+      <label>{props.placeholder}</label>
       <span data-testid={`${props.name}-status`} title={getTitle()} className={Styles.status}>
         {getStatus()}
       </span>
